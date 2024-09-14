@@ -13,5 +13,5 @@ echo "-- Benchmarking disks"
 for disk in $(lsblk -d -n -oNAME | grep -v loop);do
   DEV=/dev/$disk
   echo ${DEV}
-  sudo dd if=${DEV} of=/dev/null bs=1M count=3000;
+  sudo dd if=${DEV} of=/dev/null bs=1M count=3000 || true
 done
