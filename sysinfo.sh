@@ -11,9 +11,9 @@ function run_cmd {
 # Cloud instance info
 CURL_ARGS="--connect-timeout 2"
 echo AWS metadata:
-TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
-run_cmd curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/instance-type
-run_cmd curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/hostname
+TOKEN=`curl ${CURL_ARGS} -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+run_cmd curl ${CURL_ARGS} -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/instance-type
+run_cmd curl ${CURL_ARGS} -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/hostname
 
 echo Azure metadata:
 run_cmd curl ${CURL_ARGS} -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2017-08-01"
